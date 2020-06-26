@@ -1,4 +1,4 @@
-#pragma once
+#ifndef define
 #include "Circle.h"
 
 class Node
@@ -18,3 +18,4 @@ public:
 
     friend class List;
 };
+#endif

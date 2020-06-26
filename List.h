@@ -1,4 +1,4 @@
-#pragma once
+#ifndef define
 #include "Node.h"
 #include <iostream>
 
@@ -44,3 +44,4 @@ public:
     List& operator=(List&& other); //оператор присваивания перемещением;
 
 };
+#endif

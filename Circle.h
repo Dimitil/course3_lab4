@@ -1,4 +1,4 @@
-#pragma once
+#ifndef define
 #include "Point.h"
 #include <iostream>
 
@@ -19,3 +19,4 @@ class Circle
 
 		friend std::ostream& operator<<(std::ostream& os, const Circle& C);
 };
+#endif
