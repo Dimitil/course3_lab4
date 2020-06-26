@@ -234,7 +234,30 @@ List& List::operator=(List&& other) //оператор присваивания перемещением
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//
 
-void List::sort()
+void List::selectionSort()
 {
-    
+    Node* p=Head.m_pNext;
+    Node* minimal;
+    bool fl_need_swap=false;
+    while(p != Tail.m_pPrev)
+    {
+        minimal=p;
+        Node* d=p->m_pNext;
+        
+        while(d != &Tail)
+        {
+            if(minimal->m_Data.getRadius()> d->m_Data.getRadius())
+            {
+                minimal=d;
+            }
+             d=d->m_pNext;
+        }
+
+        if(minimal!=p)
+        {
+            std::cout<<"Need swap"p i minimal;;
+
+        }
+        p=p->m_pNext;
+    }
 }

@@ -17,6 +17,10 @@ class Circle
 
 		bool operator==(const Circle& C);
 
+        unsigned int getRadius() const {return m_radius;}
+
 		friend std::ostream& operator<<(std::ostream& os, const Circle& C);
+
+
 };
 #endif

@@ -43,5 +43,6 @@ public:
 
     List& operator=(List&& other); //оператор присваивания перемещением;
 
+    void selectionSort();
 };
 #endif
