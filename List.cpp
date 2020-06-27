@@ -100,21 +100,23 @@ unsigned int List::Remove(int x, int y, unsigned int Radius)//ищет и удаляет все
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-void List::printAll()
+std::ostream& operator<<(std::ostream& os, const List& L)
 {
-    if (m_size == 0) 
-    { 
-        std::cout << "\nList is empty\n"; 
-        return;
-    }
-    Node* p = Head.m_pNext;
-    int count = 1;
-    while (p != &Tail)
+    if (L.m_size == 0)
     {
-        std::cout << '\n' << count << ". " << p->m_Data;
+        os << "\nList is empty\n";
+        return os;
+    }
+    Node* p = L.Head.m_pNext;
+
+    unsigned int count = 1;
+    while (p != &L.Tail)
+    {
+        os <<count<<'.'<< p->m_Data;
         p = p->m_pNext;
         count++;
     }
+    return os;
 }
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
@@ -237,11 +239,10 @@ List& List::operator=(List&& other) //оператор присваивания перемещением
 void List::selectionSort()
 {
     Node* p=Head.m_pNext;
-    Node* minimal;
-    bool fl_need_swap=false;
+    
     while(p != Tail.m_pPrev)
     {
-        minimal=p;
+        Node* minimal=p;
         Node* d=p->m_pNext;
         
         while(d != &Tail)
@@ -255,9 +256,61 @@ void List::selectionSort()
 
         if(minimal!=p)
         {
-            std::cout<<"Need swap"p i minimal;;
-
+            std::swap(minimal->m_Data, p->m_Data);  
         }
         p=p->m_pNext;
     }
+}
+
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+
+void List::outInFile(const char* filename)
+{
+    std::ofstream fout(filename);
+    if (fout)
+    {
+        fout << m_size << '\n';
+        fout << *this << std::endl;
+
+        std::cout << "\nWrite compeled\n";
+        fout.close();
+    }
+    else
+        std::cerr << "\nWriting error\n";
+}
+
+
+void List::inputFromFile(const char* filename)
+{
+    size_t size;
+    char bufCh;
+    char bufWord[80];
+    unsigned int  bufCount;
+    int bufX;
+    int bufY;
+    unsigned int bufRadius;
+
+    std::ifstream fin(filename);
+    if (fin)
+    {
+        fin >> size;
+        for(size_t i=0; i<size; i++)
+        {
+            fin >> bufCount;
+            fin >> bufWord; //   .Center: 
+            fin >> bufCh;
+            fin >> bufX;
+            fin >> bufCh;
+            fin >> bufY;
+            fin >> bufCh;
+            fin >> bufWord;
+            fin >> bufRadius;
+            this->AddToTail(bufX, bufY, bufRadius);
+        }
+        fin.close();
+        std::cout << "\nRead compeled\n";
+    }
+    else
+        std::cerr << "\nCannot open file\n";
 }

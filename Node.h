@@ -1,6 +1,7 @@
 #ifndef define
 #include "Circle.h"
 
+class List;
 class Node
 {
 
@@ -17,5 +18,8 @@ public:
     Node(Node* beforeNew, const Circle* data);
 
     friend class List;
+
+	friend std::ostream& operator<<(std::ostream& os, const List& l);
+
 };
 #endif

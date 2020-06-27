@@ -1,7 +1,7 @@
 #ifndef define
 #include "Node.h"
 #include <iostream>
-
+#include <fstream>
 class List
 {
 
@@ -30,8 +30,8 @@ public:
     unsigned int Remove(const Circle& data);//ищет и удаляет все копии возвращает количество удаленных
    
     unsigned int Remove(int x, int y, unsigned int Radius);//ищет и удаляет все копии возвращает количество удаленных
-    
-    void printAll();
+
+    friend std::ostream& operator<<(std::ostream& os, const List& l);
 
     void removeAll();
 
@@ -44,5 +44,10 @@ public:
     List& operator=(List&& other); //оператор присваивания перемещением;
 
     void selectionSort();
+
+    void outInFile(const char* filename);
+
+    void inputFromFile(const char* filename);
+    
 };
 #endif
