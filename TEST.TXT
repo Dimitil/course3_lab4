@@ -1,0 +1,50 @@
+24
+1.Center: (373, 237)
+Radius: 3
+2.Center: (223, 717)
+Radius: 34
+3.Center: (194, 395)
+Radius: 67
+4.Center: (293, 11)
+Radius: 76
+5.Center: (924, 328)
+Radius: 110
+6.Center: (320, 637)
+Radius: 123
+7.Center: (675, 484)
+Radius: 140
+8.Center: (889, 628)
+Radius: 144
+9.Center: (1050, 581)
+Radius: 175
+10.Center: (724, 70)
+Radius: 195
+11.Center: (868, 427)
+Radius: 195
+12.Center: (240, 548)
+Radius: 210
+13.Center: (487, 4)
+Radius: 223
+14.Center: (482, 352)
+Radius: 224
+15.Center: (537, 391)
+Radius: 248
+16.Center: (279, 400)
+Radius: 269
+17.Center: (245, 689)
+Radius: 301
+18.Center: (834, 714)
+Radius: 302
+19.Center: (261, 3)
+Radius: 364
+20.Center: (1075, 19)
+Radius: 383
+21.Center: (844, 552)
+Radius: 407
+22.Center: (389, 448)
+Radius: 443
+23.Center: (910, 54)
+Radius: 444
+24.Center: (878, 253)
+Radius: 483
+
