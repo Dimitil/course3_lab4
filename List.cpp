@@ -151,7 +151,7 @@ List::List(const List& other) : m_size(other.m_size)//êîíñòðóêòîð ê�
 
 List& List::operator=(const List& other)//îïåðàòîð êîïèðîâàíèÿ
 {
-    if (this==&other) //ñàìîïðèñâàåâàíèå
+    if (this==&other) 
     {
         return *this;    
     }
@@ -161,13 +161,12 @@ List& List::operator=(const List& other)//îïåðàòîð êîïèðîâàíè�
         removeAll();
     }
 
-
     Node* pThis = &Head;
     Node* pOther = other.Head.m_pNext;
 
     if (m_size == 0)
     {
-        for (size_t i = 0; i < other.m_size; i++)
+        while(pOther != &other.Tail)
         {
             pThis = new Node(pThis, &pOther->m_Data);
             pOther = pOther->m_pNext;
