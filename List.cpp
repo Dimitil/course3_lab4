@@ -156,24 +156,66 @@ List& List::operator=(const List& other)//îïåðàòîð êîïèðîâàíè�
         return *this;    
     }
 
-    if (other.Head.m_pNext == &other.Tail)  //åñëè other ïóñòîé èëè m_size==0
+    if (other.Head.m_pNext == &other.Tail)  
     {
-        Head.m_pNext = &Tail;
-        Tail.m_pPrev = &Head;
-        m_size = other.m_size;
+        removeAll();
     }
 
-    removeAll(); //ïî÷èñòèòü âñå ÷òî áûëî òóò ðàíüøå   //здесь потечет!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     Node* pThis = &Head;
     Node* pOther = other.Head.m_pNext;
 
-    for (size_t i = 0; i < other.m_size; i++)
+    if (m_size == 0)
     {
-        pThis = new Node(pThis, &pOther->m_Data);  //ñêîïèðîâàòü
-        pOther = pOther->m_pNext;
+        for (size_t i = 0; i < other.m_size; i++)
+        {
+            pThis = new Node(pThis, &pOther->m_Data);
+            pOther = pOther->m_pNext;
+        }
+
+        m_size = other.m_size;
+        return *this;
     }
 
+    if (m_size < other.m_size)
+    {
+        pThis = pThis->m_pNext;
+        while (pThis != &Tail)
+        {
+            pThis->m_Data = pOther->m_Data;
+            pOther = pOther->m_pNext;
+            pThis  = pThis->m_pNext;
+        }
+        
+        pThis = pThis->m_pPrev;
+
+        while (pOther != &(other.Tail))
+        {
+            pThis = new Node(pThis, &pOther->m_Data);
+            pOther = pOther->m_pNext;
+        }
+
+        m_size = other.m_size;
+        return *this;
+    }
+
+    if (m_size >= other.m_size)
+    {
+        pThis = pThis->m_pNext;
+        while (pOther != &other.Tail)
+        {
+            pThis->m_Data = pOther->m_Data;
+            pOther = pOther->m_pNext;
+            pThis = pThis->m_pNext;
+        }
+
+        while (pThis->m_pNext != &Tail)
+        {
+            pThis->m_pNext->~Node();
+        }
+        pThis->~Node();
+
+    }
     m_size = other.m_size;
     return *this;
 }
@@ -279,7 +321,8 @@ void List::outInFile(const char* filename)
     else
         std::cerr << "\nWriting error\n";
 }
-//--
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
 
 void List::inputFromFile(const char* filename)
 {
