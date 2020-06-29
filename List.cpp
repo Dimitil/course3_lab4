@@ -48,7 +48,7 @@ void List::AddToTail(int x, int y, unsigned int Radius)
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-bool List::RemoveOne(const Circle& data)//ищет и удаляет все копии
+bool List::RemoveOne(const Circle& data)//ГЁГ№ГҐГІ ГЁ ГіГ¤Г Г«ГїГҐГІ ГўГ±ГҐ ГЄГ®ГЇГЁГЁ
 {
     Node* p = Head.m_pNext;
     while (p != &Tail)
@@ -66,34 +66,34 @@ bool List::RemoveOne(const Circle& data)//ищет и удаляет все копии
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-bool List::RemoveOne(int x, int y, unsigned int Radius)//ищет и удаляет все копии
+bool List::RemoveOne(int x, int y, unsigned int Radius)//ГЁГ№ГҐГІ ГЁ ГіГ¤Г Г«ГїГҐГІ ГўГ±ГҐ ГЄГ®ГЇГЁГЁ
 {
     return RemoveOne(Circle(x, y, Radius));
 }
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-unsigned int List::Remove(const Circle& data)//ищет и удаляет все копии возвращает количество удаленных
+unsigned int List::Remove(const Circle& data)//ГЁГ№ГҐГІ ГЁ ГіГ¤Г Г«ГїГҐГІ ГўГ±ГҐ ГЄГ®ГЇГЁГЁ ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГіГ¤Г Г«ГҐГ­Г­Г»Гµ
 {
     Node* p = Head.m_pNext;
     unsigned int deleted_count = 0;
     while (p != &Tail)
     {
+        Node* m = p->m_pNext;
         if (p->m_Data == data)
         {
+            delete p;
             m_size--;
-            p = p->m_pPrev;
-            delete p->m_pNext;
             deleted_count++;
         }
-        p = p->m_pNext;
+        p=m;
     }
     return deleted_count;
 }
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-unsigned int List::Remove(int x, int y, unsigned int Radius)//ищет и удаляет все копии возвращает количество удаленных
+unsigned int List::Remove(int x, int y, unsigned int Radius)//ГЁГ№ГҐГІ ГЁ ГіГ¤Г Г«ГїГҐГІ ГўГ±ГҐ ГЄГ®ГЇГЁГЁ ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГіГ¤Г Г«ГҐГ­Г­Г»Гµ
 {
     return Remove(Circle(x, y, Radius));
 }
@@ -133,7 +133,7 @@ void List::removeAll()
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-List::List(const List& other) : m_size(other.m_size)//конструктор копированием
+List::List(const List& other) : m_size(other.m_size)//ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГҐГ¬
 {
     Head.m_pNext = &Tail;
     Tail.m_pPrev = &Head;
@@ -149,28 +149,28 @@ List::List(const List& other) : m_size(other.m_size)//конструктор копированием
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-List& List::operator=(const List& other)//оператор копирования
+List& List::operator=(const List& other)//Г®ГЇГҐГ°Г ГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГї
 {
-    if (this==&other) //самоприсваевание
+    if (this==&other) //Г±Г Г¬Г®ГЇГ°ГЁГ±ГўГ ГҐГўГ Г­ГЁГҐ
     {
         return *this;    
     }
 
-    if (other.Head.m_pNext == &other.Tail)  //если other пустой или m_size==0
+    if (other.Head.m_pNext == &other.Tail)  //ГҐГ±Г«ГЁ other ГЇГіГ±ГІГ®Г© ГЁГ«ГЁ m_size==0
     {
         Head.m_pNext = &Tail;
         Tail.m_pPrev = &Head;
         m_size = other.m_size;
     }
 
-    removeAll(); //почистить все что было тут раньше
+    removeAll(); //ГЇГ®Г·ГЁГ±ГІГЁГІГј ГўГ±ГҐ Г·ГІГ® ГЎГ»Г«Г® ГІГіГІ Г°Г Г­ГјГёГҐ   //Р·РґРµСЃСЊ РїРѕС‚РµС‡РµС‚!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     Node* pThis = &Head;
     Node* pOther = other.Head.m_pNext;
 
     for (size_t i = 0; i < other.m_size; i++)
     {
-        pThis = new Node(pThis, &pOther->m_Data);  //скопировать
+        pThis = new Node(pThis, &pOther->m_Data);  //Г±ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј
         pOther = pOther->m_pNext;
     }
 
@@ -180,9 +180,9 @@ List& List::operator=(const List& other)//оператор копирования
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-List::List(List&& other) : m_size(other.m_size) //перемещающий конструктор
+List::List(List&& other) : m_size(other.m_size) //ГЇГҐГ°ГҐГ¬ГҐГ№Г ГѕГ№ГЁГ© ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 {
-    if (other.Head.m_pNext == &other.Tail)  //если other пустой или m_size==0
+    if (other.Head.m_pNext == &other.Tail)  //ГҐГ±Г«ГЁ other ГЇГіГ±ГІГ®Г© ГЁГ«ГЁ m_size==0
     {
         Head.m_pNext = &Tail;
         Tail.m_pPrev = &Head;
@@ -195,7 +195,7 @@ List::List(List&& other) : m_size(other.m_size) //перемещающий конструктор
         Head.m_pNext->m_pPrev = &Head;
         Tail.m_pPrev->m_pNext = &Tail;
 
-        other.Head.m_pNext = &other.Tail;
+        other.Head.m_pNext = &other.Tail;                   
         other.Tail.m_pPrev = &other.Head;
         other.m_size = 0;
     }
@@ -203,18 +203,18 @@ List::List(List&& other) : m_size(other.m_size) //перемещающий конструктор
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
 
-List& List::operator=(List&& other) //оператор присваивания перемещением
+List& List::operator=(List&& other) //Г®ГЇГҐГ°Г ГІГ®Г° ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГї ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГҐГ¬
 {
-    if (this == &other)//самоприсваивание
+    if (this == &other)//Г±Г Г¬Г®ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГҐ
     {
         return *this;
     }
 
     removeAll();
 
-    if (other.Head.m_pNext == &other.Tail)  //если other пустой или m_size==0
+    if (other.Head.m_pNext == &other.Tail)  //ГҐГ±Г«ГЁ other ГЇГіГ±ГІГ®Г© ГЁГ«ГЁ m_size==0
     {
-        m_size = other.m_size;      //0 должны быть
+        m_size = other.m_size;      //0 Г¤Г®Г«Г¦Г­Г» ГЎГ»ГІГј
 
         Head.m_pNext = &Tail;
         Tail.m_pPrev = &Head;
@@ -279,7 +279,7 @@ void List::outInFile(const char* filename)
     else
         std::cerr << "\nWriting error\n";
 }
-
+//--
 
 void List::inputFromFile(const char* filename)
 {
