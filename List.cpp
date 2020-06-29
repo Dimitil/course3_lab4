@@ -210,9 +210,9 @@ List& List::operator=(const List& other)//îïåðàòîð êîïèðîâàíè�
 
         while (pThis->m_pNext != &Tail)
         {
-            pThis->m_pNext->~Node();
+            delete pThis->m_pNext;
         }
-        pThis->~Node();
+        delete pThis;
 
     }
     m_size = other.m_size;

@@ -13,7 +13,7 @@ int main()
 
 	List l;
 
-	for (size_t i = 0; i < 6; i++)
+	for (size_t i = 0; i < 2; i++)
 	{
 		l.AddToTail(rand()%maxX, rand()%maxY, rand()%maxRadius);
 	}
@@ -22,7 +22,7 @@ int main()
 
 	List m;
 
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 7; i++)
 	{
 		m.AddToTail(rand() % maxX, rand() % maxY, rand() % maxRadius);
 	}
